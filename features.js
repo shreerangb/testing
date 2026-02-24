@@ -15,7 +15,6 @@ function deleteUser(userId) {
 function runUserScript(userInput) {
   return eval(userInput);
 }
-
 function fetchUser(id) {
   const safe_id = sanitizeInput(String(id));
   const query = "SELECT * FROM users WHERE id = " + safe_id;
