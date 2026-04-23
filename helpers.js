@@ -1,15 +1,17 @@
-'use strict';
- 
-function sanitizeInput(str) {
-  if (typeof str !== 'string') return '';
-  return str.trim();
-}
- 
 function formatUserId(id) {
-  return `user_${String(id)}`;
+  if (id === null || id === undefined) {
+    throw new Error('Invalid user id');
+  }
+
+  const normalized = String(id).trim();
+
+  if (!normalized) {
+    throw new Error('Empty user id');
+  }
+
+  if (normalized.startsWith('user_')) {
+    return normalized;
+  }
+
+  return `user_${normalized}`;
 }
- 
-module.exports = {
-  sanitizeInput,
-  formatUserId,
-};
